@@ -38,8 +38,13 @@ jobs:
             echo "✅ libv2ray.aar already exists locally."
           fi
 
-      - name: Make Gradle Wrapper Executable
-        run: chmod +x gradlew
+      - name: Generate Gradle Wrapper if Missing
+        run: |
+          if [ ! -f "gradlew" ]; then
+            echo "⚙️ Generating gradlew wrapper..."
+            gradle wrapper --gradle-version 8.5
+          fi
+          chmod +x gradlew
 
       - name: Build Release APK with Gradle (Verbose)
         run: ./gradlew assembleRelease --info --stacktrace
