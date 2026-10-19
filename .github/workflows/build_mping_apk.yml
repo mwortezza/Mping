@@ -1,4 +1,4 @@
-name: Build & Sign Mping (iOS 27 Liquid Glass)
+name: Build Mping APK
 
 on:
   push:
@@ -8,10 +8,11 @@ on:
   workflow_dispatch:
 
 jobs:
-  build-apk:
+  build:
     runs-on: ubuntu-latest
+
     steps:
-      - name: Checkout Mping Repository
+      - name: Checkout Repository
         uses: actions/checkout@v4
 
       - name: Set up JDK 17
@@ -19,39 +20,39 @@ jobs:
         with:
           distribution: 'temurin'
           java-version: '17'
+          cache: 'gradle'
 
-      - name: Set up Android SDK
+      - name: Setup Android SDK
         uses: android-actions/setup-android@v3
+        with:
+          api-level: 34
+          build-tools-version: '34.0.0'
+          ndk-version: '25.1.8937393'
+          cmake-version: '3.22.1'
 
-      - name: Pull Headless v2ray Core (libv2ray.aar)
+      - name: Download libv2ray.aar Core Binary
         run: |
           mkdir -p app/libs
-          echo "Cloning headless libv2ray from 2dust/v2rayNG..."
-          git clone --depth 1 https://github.com/2dust/v2rayNG.git /tmp/v2rayNG
-          find /tmp/v2rayNG -name "*.aar" -exec cp {} app/libs/ \; || true
           if [ ! -f "app/libs/libv2ray.aar" ]; then
-            echo "Fetching prebuilt libv2ray core binary..."
-            wget -q "https://github.com/2dust/AndroidLibV2rayLite/releases/latest/download/libv2ray.aar" -O app/libs/libv2ray.aar || true
+            echo "📥 Downloading libv2ray.aar from official release..."
+            curl -L "https://github.com/2dust/AndroidLibV2rayLite/releases/latest/download/libv2ray.aar" -o app/libs/libv2ray.aar
+          else
+            echo "✅ libv2ray.aar already exists locally."
           fi
 
-      - name: Setup Gradle
-        uses: gradle/actions/setup-gradle@v3
+      - name: Make Gradle Wrapper Executable
+        run: chmod +x gradlew
 
-      - name: Build Release APK
+      - name: Build Release APK with Gradle
+        run: ./gradlew assembleRelease --stacktrace
+
+      - name: Sign APK & Prepare Artifact
         run: |
-          gradle assembleRelease --stacktrace
+          mkdir -p build-output
+          find app/build/outputs/apk/release -name "*.apk" -exec cp {} build-output/Mping-iOS27-LiquidGlass.apk \;
 
-      - name: Rename and Sign APK
-        run: |
-          RELEASE_APK=$(find app/build/outputs/apk/release -name "*.apk" | head -n 1)
-          if [ -f "$RELEASE_APK" ]; then
-            cp "$RELEASE_APK" "Mping-iOS27-LiquidGlass.apk"
-            echo "APK ready: Mping-iOS27-LiquidGlass.apk"
-          fi
-
-      - name: Upload APK Artifact
+      - name: Upload Mping APK Artifact
         uses: actions/upload-artifact@v4
         with:
           name: Mping-iOS27-LiquidGlass-APK
-          path: Mping-iOS27-LiquidGlass.apk
-          retention-days: 14
+          path: build-output/*.apk
