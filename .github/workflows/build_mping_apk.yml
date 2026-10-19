@@ -38,16 +38,14 @@ jobs:
             echo "✅ libv2ray.aar already exists locally."
           fi
 
-      - name: Generate Gradle Wrapper if Missing
+      - name: Force Compatible Gradle Wrapper
         run: |
-          if [ ! -f "gradlew" ]; then
-            echo "⚙️ Generating gradlew wrapper..."
-            gradle wrapper --gradle-version 8.5
-          fi
+          echo "⚙️ Configuring compatible Gradle 8.4 wrapper..."
+          gradle wrapper --gradle-version 8.4
           chmod +x gradlew
 
-      - name: Build Release APK with Gradle (Verbose)
-        run: ./gradlew assembleRelease --info --stacktrace
+      - name: Build Release APK with Gradle
+        run: ./gradlew assembleRelease --stacktrace
 
       - name: Sign APK & Prepare Artifact
         run: |
