@@ -1,0 +1,6 @@
+{
+  "name": "Mping",
+  "description": "Next-Gen iOS 27 Liquid Glass VPN & Proxy Engine with real-delay latency ping, multi-protocol core, and real-time spatial telemetry.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

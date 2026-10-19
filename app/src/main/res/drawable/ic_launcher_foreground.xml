@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:aapt="http://schemas.android.com/aapt"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+
+    <!-- Glowing Cyan Refraction Ray Entering Prism -->
+    <path
+        android:pathData="M24,62 L42,54 L24,52 Z">
+        <aapt:attr name="android:fillColor">
+            <gradient
+                android:startX="24"
+                android:startY="57"
+                android:endX="42"
+                android:endY="54"
+                android:type="linear">
+                <item android:offset="0.0" android:color="#0000F5D4" />
+                <item android:offset="1.0" android:color="#E600F5D4" />
+            </gradient>
+        </aapt:attr>
+    </path>
+
+    <!-- Glowing Magenta Refraction Ray Exiting Prism -->
+    <path
+        android:pathData="M66,54 L84,46 L84,56 Z">
+        <aapt:attr name="android:fillColor">
+            <gradient
+                android:startX="66"
+                android:startY="54"
+                android:endX="84"
+                android:endY="51"
+                android:type="linear">
+                <item android:offset="0.0" android:color="#E6F72585" />
+                <item android:offset="1.0" android:color="#00F72585" />
+            </gradient>
+        </aapt:attr>
+    </path>
+
+    <!-- Glass Prism Back Facet Shadow -->
+    <path
+        android:pathData="M54,28 L74,74 L34,74 Z"
+        android:fillColor="#1AFFFFFF" />
+
+    <!-- Left Prism Facet (Cyan Refraction) -->
+    <path
+        android:pathData="M54,28 L34,74 L54,64 Z">
+        <aapt:attr name="android:fillColor">
+            <gradient
+                android:startX="34"
+                android:startY="74"
+                android:endX="54"
+                android:endY="28"
+                android:type="linear">
+                <item android:offset="0.0" android:color="#B300F5D4" />
+                <item android:offset="0.7" android:color="#804361EE" />
+                <item android:offset="1.0" android:color="#CCFFFFFF" />
+            </gradient>
+        </aapt:attr>
+    </path>
+
+    <!-- Right Prism Facet (Magenta Refraction) -->
+    <path
+        android:pathData="M54,28 L54,64 L74,74 Z">
+        <aapt:attr name="android:fillColor">
+            <gradient
+                android:startX="74"
+                android:startY="74"
+                android:endX="54"
+                android:endY="28"
+                android:type="linear">
+                <item android:offset="0.0" android:color="#B3F72585" />
+                <item android:offset="0.6" android:color="#807209B7" />
+                <item android:offset="1.0" android:color="#EEFFFFFF" />
+            </gradient>
+        </aapt:attr>
+    </path>
+
+    <!-- Bottom Internal Crystal Reflection Facet -->
+    <path
+        android:pathData="M34,74 L54,64 L74,74 L54,78 Z">
+        <aapt:attr name="android:fillColor">
+            <gradient
+                android:startX="34"
+                android:startY="74"
+                android:endX="74"
+                android:endY="74"
+                android:type="linear">
+                <item android:offset="0.0" android:color="#9900F5D4" />
+                <item android:offset="0.5" android:color="#994CC9F0" />
+                <item android:offset="1.0" android:color="#99F72585" />
+            </gradient>
+        </aapt:attr>
+    </path>
+
+    <!-- Core Specular Edge Refraction Lines (Liquid Glass) -->
+    <path
+        android:pathData="M54,28 L34,74"
+        android:strokeWidth="1.5"
+        android:strokeColor="#EEFFFFFF" />
+    <path
+        android:pathData="M54,28 L74,74"
+        android:strokeWidth="1.5"
+        android:strokeColor="#EEFFFFFF" />
+    <path
+        android:pathData="M54,28 L54,64"
+        android:strokeWidth="2.0"
+        android:strokeColor="#FFFFFFFF" />
+    <path
+        android:pathData="M34,74 L54,64 L74,74"
+        android:strokeWidth="1.2"
+        android:strokeColor="#CC00F5D4" />
+
+    <!-- Glowing Apex Lens Flare -->
+    <path
+        android:pathData="M54,28m-4,0a4,4 0 1,1 8,0a4,4 0 1,1 -8,0">
+        <aapt:attr name="android:fillColor">
+            <gradient
+                android:centerX="54"
+                android:centerY="28"
+                android:gradientRadius="4"
+                android:type="radial">
+                <item android:offset="0.0" android:color="#FFFFFFFF" />
+                <item android:offset="0.5" android:color="#B300F5D4" />
+                <item android:offset="1.0" android:color="#00000000" />
+            </gradient>
+        </aapt:attr>
+    </path>
+
+    <!-- Center Liquid Core Bead -->
+    <path
+        android:pathData="M54,58m-2.5,0a2.5,2.5 0 1,1 5,0a2.5,2.5 0 1,1 -5,0"
+        android:fillColor="#FFFFFFFF" />
+</vector>
